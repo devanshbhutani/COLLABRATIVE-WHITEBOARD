@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Room from './models/Room.js';
 import { generateRoomId, validateRoomId, generateUserId } from './utils/helpers.js';
+import { connectDB } from './config/db.js';
 
 dotenv.config();
 
@@ -39,24 +40,8 @@ const activeRooms = new Map();
 const activeUsers = new Map();
 let useDatabase = false;
 
-// MongoDB connection with fallback
-const connectToMongoDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/whiteboard', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000, // 5 second timeout
-    });
-    console.log('Connected to MongoDB');
-    useDatabase = true;
-  } catch (error) {
-    console.log('MongoDB not available, using in-memory storage');
-    console.log('To enable database persistence, start MongoDB or set MONGODB_URI');
-    useDatabase = false;
-  }
-};
-
-connectToMongoDB();
+// Connect to MongoDB
+connectDB();
 
 io.on('connection', (socket) => {
   console.log('User connected:', socket.id);

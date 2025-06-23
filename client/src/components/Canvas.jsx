@@ -696,10 +696,10 @@ const Canvas = ({
               // Split the line into two segments at the eraser position
               newElements.push({ ...ele, x2: closest.x, y2: closest.y });
               newElements.push({ ...ele, x: closest.x, y: closest.y });
-              hasChanges = true;
+                hasChanges = true;
             } else if (dist < eraserRadius && (t <= 0 || t >= 1)) {
               // Eraser is near an endpoint, remove the line
-              hasChanges = true;
+                hasChanges = true;
             } else {
               newElements.push(ele);
             }

@@ -12,13 +12,17 @@ dotenv.config();
 
 const app = express();
 const server = createServer(app);
+
+const allowedOrigins = [
+  process.env.CLIENT_URL || "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:5175",
+  "https://collaborative-whiteboard-ten.vercel.app" // Add your Vercel frontend URL here
+];
+
 const io = new Server(server, {
   cors: {
-    origin: [
-      process.env.CLIENT_URL || "http://localhost:5173",
-      "http://localhost:5174",
-      "http://localhost:5175"
-    ],
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
     credentials: true
   },
@@ -26,11 +30,7 @@ const io = new Server(server, {
 });
 
 app.use(cors({
-  origin: [
-    process.env.CLIENT_URL || "http://localhost:5173",
-    "http://localhost:5174",
-    "http://localhost:5175"
-  ],
+  origin: allowedOrigins,
   credentials: true
 }));
 app.use(express.json());

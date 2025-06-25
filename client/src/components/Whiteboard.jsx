@@ -137,7 +137,7 @@ const Whiteboard = () => {
     }
 
     // Connect to socket with proper error handling
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     console.log('Connecting to backend:', backendUrl);
     
     socketRef.current = io(backendUrl, {
@@ -513,7 +513,7 @@ const Whiteboard = () => {
       <div className="loading-container">
         <div className="loading-spinner"></div>
         <p>Connecting to server...</p>
-        <p className="connection-status">Backend URL: {import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001'}</p>
+        <p className="connection-status">Backend URL: {import.meta.env.VITE_BACKEND_URL}</p>
       </div>
     );
   }

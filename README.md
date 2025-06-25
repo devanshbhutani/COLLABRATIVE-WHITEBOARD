@@ -1,48 +1,22 @@
-# COLLABORATIVE-WHITEBOARD
+This project is a real-time collaborative whiteboard built with React (Vite) on the frontend and Node.js + Socket.io + MongoDB on the backend. It enables multiple users to draw, chat, and share ideas instantly in shared rooms, making it ideal for remote teams, classrooms, and brainstorming sessions.
+Key Features
+Real-Time Drawing: Draw freehand, rectangles, lines, and circles on a shared canvas. All changes sync instantly across all users in the same room.
+Shape Manipulation: Select, move, and resize shapes after drawing for precise adjustments.
+Color & Size Picker: Choose from preset colors or a custom color picker and set brush sizes for creative flexibility.
+Persistent Rooms: Each whiteboard session is tied to a unique room code. Users can join existing rooms or create new ones.
+Live Chat: Integrated chat panel for instant messaging with everyone in the room.
+User Presence: See who else is online and collaborating in real time.
+History & Persistence: Drawing and chat history are saved in MongoDB, so new users joining a room see the full session history.
+Responsive UI: Clean, modern interface that works seamlessly on desktop and mobile browsers.
+Tech Stack
+Frontend: React (Vite), modern CSS, Socket.io-client
+Backend: Node.js, Express, Socket.io, MongoDB (Mongoose)
+Hosting: Vercel/Netlify (frontend), Render/Heroku (backend), MongoDB Atlas (database)
+How It Works
+Users join or create a room via a unique code.
+All drawing and chat actions are broadcast in real time via Socket.io.
+The backend saves all drawing elements and chat messages to MongoDB for persistence.
+When a new user joins a room, they receive the full drawing and chat history instantly.
 
-## MongoDB Setup for Persistent Data
 
-This project uses MongoDB for persistent storage. You must set the `MONGODB_URI` environment variable to connect to your MongoDB Atlas cluster or any live MongoDB instance.
-
-### 1. Local Development
-- Copy `.env.example` to `.env` in the `server` directory.
-- Set `MONGODB_URI` to your MongoDB Atlas connection string:
-  ```
-  MONGODB_URI=mongodb+srv://<user>:<password>@cluster0.mongodb.net/whiteboard?retryWrites=true&w=majority
-  ```
-- Add any other required variables (see `.env.example`).
-
-### 2. Deploying on Render or Railway
-- When creating your web service, add an environment variable:
-  - **Key:** `MONGODB_URI`
-  - **Value:** *(your MongoDB Atlas connection string)*
-- Add other variables as needed (e.g., `JWT_SECRET`, `CLIENT_URL`).
-
-### 3. Example `.env.example`
-See `server/.env.example` for a template.
-
----
-
-## Quick Start
-
-1. Clone the repo and install dependencies in both `client` and `server`.
-2. Set up your `.env` files as described above.
-3. Start the backend:
-   ```sh
-   cd server
-   npm install
-   npm start
-   ```
-4. Start the frontend:
-   ```sh
-   cd client
-   npm install
-   npm run dev
-   ```
-
----
-
-## Deployment
-
-- **Frontend:** Deploy the `client` folder to Vercel.
-- **Backend:** Deploy the `server` folder to Render or Railway. Set all required environment variables in the platform dashboard.
+DEPLOYED LINK : https://collabrative-whiteboard-git-main-devansh-bhutani-s-projects.vercel.app
